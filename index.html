@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>143 Weeks of Love - Edriane's Message</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .letter {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transform: scale(0);
+            animation: unfold 1s forwards;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .letter:hover {
+            transform: scale(1.02);
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff3b3b;
+            animation: float 3s infinite;
+        }
+
+        @keyframes unfold {
+            to { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            animation: fall linear infinite;
+        }
+
+        button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <button onclick="startExperience()">Open Your Special Message ❤️</button>
+    
+    <div class="container" id="letterContainer" style="display: none;">
+        <div class="letter" onclick="createHeart()">
+            <!-- Letter content from the image -->
+            <h2 style="color: #ff69b4; text-align: center;">Good Morning Babyyyy 🌸</h2>
+            <h1 style="text-align: center; color: #ff3b3b;">Happy 32nd Monthsary! 💖</h1>
+            <!-- Rest of the letter content -->
+            <p>Did you know? 32 months is 143 weeks...</p>
+            <!-- Include all paragraphs from original letter -->
+            <p style="text-align: right; font-style: italic;">Yours always and always,<br>Edriane</p>
+        </div>
+    </div>
+
+    <audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2022/03/19/audio_d1678dc660.mp3"></audio>
+
+    <script>
+        function startExperience() {
+            document.querySelector('button').style.display = 'none';
+            document.getElementById('letterContainer').style.display = 'block';
+            document.getElementById('bgMusic').play();
+            createPetals();
+        }
+
+        function createPetals() {
+            for (let i = 0; i < 50; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(petal);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 90 + 'vw';
+            heart.style.top = Math.random() * 90 + 'vh';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 3000);
+        }
+    </script>
+</body>
+</html>
